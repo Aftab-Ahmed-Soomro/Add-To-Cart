@@ -9,7 +9,8 @@ const initialValue = {
 export const ProductReducer = (state=initialValue,{type,payload}) => {
     switch (type) {
         case ProductTypes.ALL_PRODUCTS :
-            return {...state, allProducts : [...state.allProducts,...payload]}
+            // return {...state, allProducts : [...state.allProducts,...payload]}
+            return { ...state, allProducts: payload }; // Replace instead of appending
 
         case ProductTypes.ADD_CART_PRODUCT :
             const existingProduct = state.cart.find(
