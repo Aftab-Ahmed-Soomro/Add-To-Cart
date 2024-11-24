@@ -11,7 +11,13 @@ export const ProductReducer = (state=initialValue,{type,payload}) => {
         case ProductTypes.ALL_PRODUCTS :
             return {...state, allProducts : [...state.allProducts,...payload]}
 
-        case ProductTypes.CART_PRODUCT :
+        case ProductTypes.ADD_CART_PRODUCT :
+            const existingProduct = state.cart.find(
+                (item) => item.id === payload.id
+            );
+            if (existingProduct) {
+            return {...state };
+            }
             return {...state, cart:[...state.cart,payload]}   
 
         case ProductTypes.REMOVE_CART_PRODUCT :
